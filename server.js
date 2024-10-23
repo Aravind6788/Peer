@@ -2,7 +2,7 @@ const { PeerServer } = require("peer");
 
 const peerServer = PeerServer({
   port: 3001,
-  path: "/myapp",
+  path: "/",
   cors: {
     origin: "https://group-meet-e8y3.onrender.com", // Allow your main server's domain
     methods: ["GET", "POST"],
