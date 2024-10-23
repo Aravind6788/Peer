@@ -1,19 +1,12 @@
-const { ExpressPeerServer } = require("peer");
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3001;
+const { PeerServer } = require("peer");
 
-// Serve static files from the public directory
-app.use(express.static("public"));
-
-// Create a PeerJS server
-const server = app.listen(PORT, () => {
-  console.log(`PeerJS server running on port ${PORT}`);
+const peerServer = PeerServer({
+  port: 3001,
+  path: "/myapp",
+  cors: {
+    origin: "https://group-meet-e8y3.onrender.com", // Allow your main server's domain
+    methods: ["GET", "POST"],
+  },
 });
 
-const peerServer = ExpressPeerServer(server, {
-  debug: true,
-});
-
-app.use("/peerjs", peerServer);
- 
+console.log("Peer server running on port 3001");
